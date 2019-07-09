@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Timer</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../global-styles.css"/>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+</head>
+<body>
+    <main>
+        <section class="column">
+            <div class="column-inner" id="timer-column-inner">
+                <div id="timer" class="unselectable"><span id="timer-h"></span><span id="timer-m">00:</span><span id="timer-s">00</span><span id="timer-ms">.000</span></div>
+            </div>
+        </section>
+        <section class="column">
+            <div class="column-inner">
+                <h1>Settings</h1>
+                <form autocomplete="off">
+                    <label><input type="checkbox" id="cycle-checkbox"/>Cycle timer after <input type="number" id="modulus-input" disabled="" required="" value="60000" min="20"/> milliseconds</label>
+                </form>
+                <br/>
+                <button type="button" id="reset-timer">Reset timer</button>
+            </div>
+        </section>
+    </main>
+    <script src="timer.js"></script>
+</body>
+</html>
