@@ -36,7 +36,7 @@ function update_timer() {
 
     let [h, m, s, ms] = split_time(time);
     document.getElementById("timer-h").innerText = h > 0 ? String(h) + ":" : "";
-    document.getElementById("timer-m").innerText = m > 0 ? String(m).padStart(2, "0") + ":" : "";
+    document.getElementById("timer-m").innerText = (h > 0 || m > 0) ? String(m).padStart(2, "0") + ":" : "";
     document.getElementById("timer-s").innerText = String(s).padStart(2, "0");
     document.getElementById("timer-ms").innerText = "." + String(ms).padStart(3, "0");
 };
