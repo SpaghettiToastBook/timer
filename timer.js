@@ -18,19 +18,23 @@ let timer_state = {
     time_of_last_start: Date.now(),
 };
 
-function update_timer() {
-    timer_state.time = timer_state.time_before_last_start + (timer_state.running ? (Date.now() - timer_state.time_of_last_start) : 0);
-    
-    let time = timer_state.time;
-    if (settings.cycle) {
-        time %= settings.modulus;
-    };
-    
+function split_time(time) {
     let h, m, s, ms;
     [h, time] = divmod(time, 60 * 60 * 1000);
     [m, time] = divmod(time, 60 * 1000);
     [s, ms] = divmod(time, 1000);
-    
+    return [h, m, s, ms];
+};
+
+function update_timer() {
+    timer_state.time = timer_state.time_before_last_start + (timer_state.running ? (Date.now() - timer_state.time_of_last_start) : 0);
+
+    let time = timer_state.time;
+    if (settings.cycle) {
+        time %= settings.modulus;
+    };
+
+    let [h, m, s, ms] = split_time(time);
     document.getElementById("timer-h").innerText = h > 0 ? String(h) + ":" : "";
     document.getElementById("timer-m").innerText = m > 0 ? String(m).padStart(2, "0") + ":" : "";
     document.getElementById("timer-s").innerText = String(s).padStart(2, "0");
@@ -84,5 +88,3 @@ function apply_settings() {
 
 cycle_checkbox.addEventListener("change", () => apply_settings());
 modulus_input.addEventListener("change", () => apply_settings());
-
-window.setTimeout(0, apply_settings);
